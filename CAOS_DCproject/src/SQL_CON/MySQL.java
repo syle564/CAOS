@@ -32,9 +32,6 @@ public class MySQL {
 		if(con==null)
 		{
 			try{
-			String username = "root";
-			String password = "parola";
-			String url = "jdbc:mysql://localhost:3306/caos_dc";
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("Connection established!");
@@ -134,15 +131,13 @@ public class MySQL {
 			 conn.setAutoCommit(false);
 			 ArrayList<Timestamp> endTimes=new ArrayList<Timestamp>();
 
-			String statement="SELECT * FROM caos_dc.loads_tbl WHERE dock_ID="+dock_ID+" FOR UPDATE;";
+			String statement="SELECT * FROM loads_tbl WHERE dock_ID="+dock_ID+" FOR UPDATE;";
 			
 			Statement s = conn.createStatement();
 			s.executeQuery(statement);
 			ResultSet rs = s.getResultSet();
 			while (rs.next()) {		
 				Timestamp estEndTime = rs.getTimestamp("estEndTime");
-			
-				System.out.println("here");
 				if (rs.wasNull()) {
 					System.out.println("Its null!");
 				}
