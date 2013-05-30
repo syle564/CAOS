@@ -2,13 +2,17 @@ package test;
 	
 
 
+
+
+import model.LoadInfo;
 import SQL_CON.MySQL;
 
 public class Test {
 	public static void main(String[] args) {
-		MySQL.createLoadOperation
-		("2013-06-02 10:10:10","2013-06-02 10:40:10", 2, 1);
-		System.out.println(DU.createDate());
+		for(LoadInfo lo:MySQL.getDatesForDock("'2013-06-02'"))
+		System.out.println(lo);
+		MySQL.calculateAndCreateLoad(1,4);
+		MySQL.closeConnection();
 	}
 
 }
